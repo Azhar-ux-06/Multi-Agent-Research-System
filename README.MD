@@ -6,6 +6,19 @@ Instead of throwing everything at one AI and hoping for a decent answer, the wor
 
 ## How it works
 
+```mermaid
+flowchart TD
+    A[Topic entered by user] --> B[Search Agent]
+    B -->|searches the web via Tavily| C[Search Results]
+    C --> D[Reader Agent]
+    D -->|picks best URL and scrapes it| E[Scraped Content]
+    E --> F[Writer Chain]
+    C --> F
+    F -->|drafts structured report| G[Final Report]
+    G --> H[Critic Chain]
+    H -->|scores and reviews| I[Feedback + Score]
+```
+
 1. **Search Agent** - takes the topic and searches the web for recent, reliable sources
 2. **Reader Agent** - picks the most relevant result out of those and scrapes the actual page for deeper content
 3. **Writer** - takes the search results plus the scraped content and drafts a proper report: intro, key findings, conclusion, sources
